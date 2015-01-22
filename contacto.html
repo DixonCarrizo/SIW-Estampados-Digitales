@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+
+<script src="js/jquery/jquery.min.js"></script>
+ <script src="js/jquery/jquery.widget.min.js"></script>
+ <script type="text/javascript">
+ 
+	$(document).ready(function()
+	{
+ 			$("#enviar").on('click',function()
+			{
+  				$.post("procesos/enviarmensaje.php",
+ 				{
+ 	   				correo:$('#correo').val(),
+	    			mensaje:$('#mensaje').val()
+  				});
+			});
+	});
+
+
+ </script>
+
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+<table width="262" border="0" align="center">
+  <tr>
+    <th colspan="2" scope="col">Contactanos</th>
+  </tr>
+  <tr>
+    <td width="88">Correo</td>
+    <td width="164"><input type="text" name="correo" id="correo"></td>
+  </tr>
+  <tr>
+    <td>Mensaje</td>
+    
+    <td><input type="text" name="mensaje" id="mensaje"></td>
+  </tr>
+  <tr></tr>
+  <tr>
+    <td colspan="2"><input type="submit" name="submit" id="enviar" value="enviar" align="center" onClick="enviar(document.getElementById("correo").value,document.getElementById("mensaje").value" ></td>
+  </tr>
+</table>
+</body>
+</html>

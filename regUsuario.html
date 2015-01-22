@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+
+ <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+  
+  
+	<script type="text/javascript">
+		/*  PRIMERA FORMA
+		
+		function registrar(nombre,apellido,cedula)
+		{   
+			var xhr= new XMLHttpRequest();
+	
+			xhr.onreadystatechange = function()
+			{
+				if(xhr.readyState==4 && xhr.status==200)
+				{
+					document.getElementById("tabla").innerHTML=xhr.responseText;
+				}
+			}
+			xhr.open('POST','procesos/registrarUsuario.php',true);
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send('nombre='+nombre+"&apellido="+document.getElementById("apellido").value);
+		}*/
+
+	$(document).ready(function()
+	{
+ 			
+			$.post("procesos/resgistrarUsuario.php",
+ 				{
+ 	   				nombre:$('#nombre').val(),
+	    			apellido:$('#apellido').val(),
+					cedula:$('#cedula').val(),
+					fechanac: $('#fechanac').val(),
+					numtelefono:$('#numtelefono').val(),
+					correo:$('#correo').val(),
+					clave:$('#clave').val()
+  				},
+		  		function(data,status)
+				{	$("#usuario").html("");
+		    		$("#principal").load("procesar/listar_estudiantes.php");
+		  		});
+				
+				
+			$("#registrar").on('click',function()
+			{
+  				
+			});
+	});
+
+
+	</script>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+<div class="usuario" id="usuario">
+  <table width="262" border="0" align="center">
+    <tr>
+      <th colspan="2" scope="col">Registro de Usuario</th>
+    </tr>
+    <tr>
+      <td width="1294">Nombre</td>
+      
+      <td width="1840">
+      	<input type="text" name="nombre" id="nombre"></td>
+    </tr>
+    <tr>
+      <td>Apellido</td>
+      <td><input type="text" name="apellido" id="apellido"></td>
+      
+    </tr>
+    <tr>
+      <td>Cedula</td>
+      <td><input type="text" name="cedula" id="cedula"></td>
+    </tr>
+    <tr>
+      <td>Fecha de Nacimiento</td>
+      <td><input type="date" name="fechanac" id="fechanac"></td>
+    </tr>
+    <tr>
+      <td><p>Numero de Telefono</p></td>
+      <td><input type="text" name="numtelefono" id="numtelefono"></td>
+    </tr>
+    <tr>
+      <td>Correo Electronico</td>
+      <td><input type="email" name="correo" id="correo"></td>
+    </tr>
+    <tr>
+      <td>Contraseña</td>
+      <td><input type="password" name="clave" id="clave"></td>
+    </tr>
+    <tr>
+      <td>Ingrese de nuevo contraseña</td>
+      <td><input type="password" name="auxclave" id="auxclave"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="submit" name="submit" id="registrar" value="Registrar" align="center" onClick="registrar(document.getElementById("nombre").value,document.getElementById("apellido").value,document.getElementById("cedula").value,document.getElementById("fechanac").value,document.getElementById("numtelefono").value,document.getElementById("correo").value,document.getElementById("clave").value"></td>
+    </tr>
+  </table>
+  
+</div>
+</body>
+</html>

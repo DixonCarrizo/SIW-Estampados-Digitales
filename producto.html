@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+
+<script src="js/jquery/jquery.min.js"></script>
+<script src="bootstrap-3.3.1/dist/js/bootstrap.min.js"></script>
+<script src="js/jquery/jquery.widget.min.js"></script>	
+<script>
+   function getGET()
+    {
+        // capturamos la url
+        var loc = document.location.href;
+        // si existe el interrogante
+        if(loc.indexOf('?')>0)
+        {
+            // cogemos la parte de la url que hay despues del interrogante
+            var getString = loc.split('?')[1];
+            // obtenemos un array con cada clave=valor
+            var GET = getString.split('&');
+            var get = {};
+
+            // recorremos todo el array de valores
+            for(var i = 0, l = GET.length; i < l; i++){
+                var tmp = GET[i].split('=');
+                get[tmp[0]] = unescape(decodeURI(tmp[1]));
+            }
+            return get;
+        }
+    }
+    
+    window.onload = function()
+    {
+        // Cogemos los valores pasados por get
+        var valores=getGET();
+        if(valores)
+        {
+            // hacemos un bucle para pasar por cada indice del array de valores
+            for(var index in valores)
+            {
+            	$("#valorproducto").load("producto.html?id=1");
+			}
+        }else{
+            // no se ha recibido ningun parametro por GET
+            }
+    }
+    </script>
+</head>
+
+<body>
+<div id=valorproducto></div>
+</body>
+</html>
